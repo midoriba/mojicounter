@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 const NlStripper = () => {
     const [text, setText] = useState("");
+    const copyToClipboard = async (content) => {
+        await navigator.clipboard.writeText(content);
+    }
     const handleTextChange = (event) => {
         const newtext = event.target.value
         setText(newtext)
@@ -9,6 +12,7 @@ const NlStripper = () => {
     const handleClick = () => {
         const strippedtext = text.replace(/\r?\n/g, ' ')
         setText(strippedtext)
+        copyToClipboard(strippedtext)
     }
     return (
         <div className="word-counter">
